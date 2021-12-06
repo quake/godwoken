@@ -1,5 +1,6 @@
 pub mod chain_view;
 pub mod smt;
+pub mod snapshot;
 pub mod state;
 mod store_impl;
 pub mod traits;

@@ -504,7 +504,7 @@ async fn get_transaction_receipt(
     store: Data<Store>,
 ) -> Result<Option<TxReceipt>> {
     let tx_hash = to_h256(tx_hash);
-    let db = store.begin_transaction();
+    let db = store.get_snapshot();
     // search from db
     if let Some(receipt) = db.get_transaction_receipt(&tx_hash)?.map(|receipt| {
         let receipt: TxReceipt = receipt.into();

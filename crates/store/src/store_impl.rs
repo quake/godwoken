@@ -1,5 +1,6 @@
 //! Storage implementation
 
+use crate::snapshot::StoreSnapshot;
 use crate::transaction::StoreTransaction;
 use crate::write_batch::StoreWriteBatch;
 use anyhow::Result;
@@ -46,6 +47,12 @@ impl<'a> Store {
     pub fn begin_transaction(&self) -> StoreTransaction {
         StoreTransaction {
             inner: self.db.transaction(),
+        }
+    }
+
+    pub fn get_snapshot(&self) -> StoreSnapshot {
+        StoreSnapshot {
+            inner: self.db.get_snapshot(),
         }
     }
 
